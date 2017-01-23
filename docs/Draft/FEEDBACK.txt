@@ -1,0 +1,150 @@
+Start button bigger
+Spinners in textboxes
+
+###################################################
+####################### SRS #######################
+###################################################
+
+Revision History: 25/8/16 is shown. However, there is 2/9/16 on the cover page. Keep the revision history up to date! Also, release version should be 1.0.
+
+The Cover Page say semester 2, not September 2. Industry standard is to update revision history only after an initial release, but we can do whatever you prefer.
+
+1.2 Reorder the wording may give a better explanation. For example, User Requirements (UR), Functional Requirements (FR) and …
+
+Sure. This is explained in the conventions section, but we can make it more clear.
+
+1.4 ‘While hardware considerations are touched on in the form of nonfunctional requirements’???
+
+This just meant that the hardware platform is already defined for us, but may not have been clear.
+
+2 ‘Overall description’ makes more sense than ‘Description’.
+
+Sure. Can change.
+
+2.1 ‘Must autonomously’ or ‘move autonomously and under manual control’?
+
+This was not actually a typo.
+
+2.1.1 Check the meaning of ‘Vision’. The ultrasonic sensor gives you distance data, but nothing like images. Is ‘combining’ enough for the work, or do you need to ‘process’/’analyze’ as well?
+
+Fair enough. We will change this.
+
+2.1.2 Communications and Emergency operations are very important. Consider change the title ‘Auxiliary Systems’.
+
+Fair enough. We will change this.
+
+2.2 Try to use ‘Human-machine interaction (HMI)’ for the first HMI, so the reader understands its meaning.
+
+Fair enough. We will change this.
+
+2.4 Some constraints may be mixed with assumptions.
+
+Sure. We can add a subsection
+
+3 Add ‘Status (implemented/unimplemented)’ and ‘Source’ for each entry.
+
+Fair enough. We will change this.
+
+3.1.1
+
+URC004: Description is not meaningful.
+
+We will clarify
+
+URC007: ‘pre-defined NGZs’ and ‘operator specified NGZs during exploration’.
+
+Fair enough. We will change this.
+
+3.2.1
+
+URC010: Does ‘command-line tool’ mean that the user has to know programming or how to use Terminal?
+
+Programming no, terminal yes. This requirement will probably be changed to GUI.
+
+4.1.1
+
+FRC002-004: What happens if the operator wants to move the robot outside the boundary manually?
+
+This is possible in manual mode. We will clarify.
+
+FRC006: Looks like High priority.
+
+Fair enough. We will change this.
+
+4.2.1
+
+FRC010: ‘This does not include exporting map data to file.’ If it’s a part of the demo, it should be finished within 20 mins.
+
+Fair enough. We will change this.
+
+FRC014: 10cm doesn’t sound reasonable especially when you have your auto correction feature.
+
+Ok, we will revisit this.
+
+4.2.2
+
+FRE03: Where is FRE01 and 02? Why do we need Expedited Finish? What’s the source? From client meeting or project spec doc?
+
+We will review this.
+
+4.3.1
+
+FRC0015-16 Maybe reorder the sentencing to make it clear. The work of Faultline Detection actually includes Depth Detection.
+
+Fair enough. We will change this.
+
+5.1.1
+
+NRC001: Linux? Any requirements/assumptions for Java version?
+
+Ok, will clarify.
+
+Any chapter for safety, quality assurance and user case?
+
+Can add if required
+
+###################################################
+####################### SPMP ######################
+###################################################
+
+Pages I, ii
+
+No caption for rev history
+
+When/how risk occurs, how to identify, what is high low medium
+
+Timeline
+
+Feedback from David:
+2.1.2 Project liaison or ambassador would be a better term than product owner  DONE YANN 23/10
+
+3 You may want to consider risk prevention and minimisation strategies as well as mitigation plans.  DONE YANN 25/10
+
+4.2 You could talk about the approach you used to determine what goes in a milestone and how the system may be versioned. DONE YANN 25/10
+
+4.3 I was expecting some sort of chart or diagram that spans the whole project, labelling tasking and milestones and how they line up with your development phases.  DONE YANN 23/10
+
+5.1.1 You are tying together your design architecture with your project plan. This generally not a good idea. Either this is how you do all your projects or this is how your design this project. If it's the latter, then it should be in the SDD. Move table 6 to the SDD and that should be fine. DONE YANN 25/10
+
+5.2.1 Is the versioning only apply to documents? What about software releases? Whats the difference between version 0.1 and 1.0 DONE YANN 25/10
+
+3/3 2/2 3/4 2/3 3/3 18/20
+
+###################################################
+####################### SDD #######################
+###################################################
+
+Section 1
+Scope is missing. You should mention what is included in your project and what is excluded for example hardware controls are in your project scope? Because if they are then ideally you would test hardware controls as well (Junit testing). It should be consistent with SRS.
+Section 1.3
+Is it consistent with SRS? It is advisable to mention also specific constraints that impact the project features and are directly related to the specs e.g. sensor capability.
+Section 3.3
+Dependencies are missing. In some components data is also missing e.g. C001. If it is not available then mention None or N/A etc.
+In interfaces, you do not need to provide method detail but you need to provide the names of specific components that this particular component interfaces with e.g. in C003 it says ‘The Movement Controller provides the LocationListener interface in order to allow other components to receive notification when the robot move to a new position.’ Which other components? Mention each one of them if it interfaces with all components.  C003 reference to SRS is missing.
+ 
+Section 3.5
+You should add more state diagrams of your system and interaction diagrams. You do not need to cover all combinations of use cases, but you should have a broad coverage.
+ 
+Good job over all. Excellent job with class diagrams
+
+

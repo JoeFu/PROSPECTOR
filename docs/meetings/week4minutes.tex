@@ -1,0 +1,140 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 22 cm
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+%%%mention the no, time, and venue of the meeting
+\noindent The week 4 Software Engineering Group (PG4) Project weekly meeting was held in {\bf Room 462 (Ingkarni Wardli)} at {\bf 10:40am on Tuesday 16 August 2016}.
+
+\vspace*{15pt}
+\begin{center}
+\huge \bf Minutes
+\end{center}
+
+%%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+\section*{Chair: Zeqi Fu}
+\vspace*{10pt}
+
+%%%if some students cannot make the meeting due to some reasons, their names should appear here.
+\section{Apologies}
+\begin{itemize}
+\item none
+\end{itemize}
+
+%%%short presentation about the work of previous week or any milestone specified in the course.
+\section{Present}
+\begin{itemize}
+\item Tao Zhang
+\item Yi Lin
+\item Yuan Liang
+\item Lili Wu
+\item Zeqi Fu
+\item Navdeep Singh
+\item Yann Frizenschaf
+\end{itemize}
+
+%%%any schedules for this meeting should go next, each with a separate section.
+%%%for example, the first meeting is about requirement elicitation, like the following.
+\section{Client}
+The team presented the client with the following:
+
+%%%if there are more subissues, make them as subsections.
+\subsection{Requirements Summary }
+Zeqi Fu gave a brief summary of the proposed major features of the SeaFaults SFM. 
+
+\begin{enumerate}
+\item Feature groups identified include: Movement, Mapping, and Vision
+\item Possible project management approaches: Waterfall, Evolutionary Development, Component-based Development, and Agile Methods
+\end{enumerate}
+
+\subsection{Additional requirements elicitation}
+Following on from the previous week, further questions regarding requirements were presented, with the following outcomes:
+\begin{enumerate}
+\item Movement
+\begin{itemize}
+\item Obstacle detection must be automatic
+\item Autonomous control must be a core function, and not an extension goal
+\item Emergency stop is a required (core) feature
+\item The robot is allowed to exceed the boundary by a small margin based one what is reasonable given the geometry of the robot (i.e. sensor positioning)
+\item The robot is allowed to cross fault lines
+
+\end{itemize}
+\item Mapping
+\begin{itemize}
+\item Map state must be presented visually in real-time via a GUI of the team's choosing (web- or desktop-based)
+\item All obstacles, faultines and boundaries must be present in both the real-time map and the XML export
+\item XML can be exported after the mapping operation is completed
+\item XML loading functionality is required (finish partially completed map)
+
+\end{itemize}
+
+\item Project management tools
+\begin{itemize}
+\item Client has no preference on project management tools; this is an internal decision
+
+\end{itemize}
+\item Operations
+\begin{itemize}
+\item As mentioned previously, a GUI is required. The required controls and display will be defined by the hitherto elicited requirements.
+\end{itemize}
+\end{enumerate}
+
+\section{Presentation of draft requirements for client review}
+The client was presented with the SRS draft containing the proposed requirements, split into core goals (absolute requirements) and extension goals (nice-to-haves). The client's response to these are shown below.
+
+\subsection{User requirements}
+
+\begin{enumerate}
+\item All GUI functionality related to autonomous operation must be made a core goal (currently extension)
+\end{enumerate}
+
+\subsection{Functional requirements}
+
+\begin{enumerate}
+\item All functionality related to autonomous operation must be made a core goal (currently extension)
+\item FRE005 (export of map image in addition to XML) can be deleted
+\end{enumerate}
+
+
+\subsection{Non-functional requirements}
+
+\begin{enumerate}
+\item Operating system requirements are to be defined by the team; the client has no preference
+\item The system, including the GUI, is to run on hardware provided by the team (i.e. laptop)
+\end{enumerate}
+
+\subsection{General progress update}
+\begin{enumerate}
+\item Yann Frizenschaf has been appointed project manager
+\item Tao Zhang has conducted basic hardware tests
+\item The team has split into three feature development teams: Tao Zhang and Yi Lin will focus on robot Movement, Yann Frizenschaf and Zeqi  Fu will focus on Mapping, and Yuan Liang, Lili Wu, and Navdeep Singh will focus on Vision (sensors).
+\item SRS is a work in progress and will be submitted in draft form next week
+\end{enumerate}
+
+
+ 
+%%%more issues should make it like the above one.
+\section{Other Issues}
+
+Nil
+
+%%%finally, specifies time of next meeting
+\vspace*{10pt}
+\noindent Note: Next client meeting to be held on 23 August 2016.
+
+
+\end{document}

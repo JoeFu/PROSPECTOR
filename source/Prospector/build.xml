@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- PROSPECTOR (PGO4) SFM ANT BUILD FILE -->
+<project basedir="." default="build" name="Prospector">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <!-- DEFINE CLASSPATHS -->
+    <path id="Prospector.classpath">
+        <pathelement location="bin"/>
+		<fileset dir="lib" includes="*.jar"/>
+    </path>
+    <path id="run.ProspectorMain.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+        <fileset dir="lib" includes="*.jar"/>
+    </path>
+    <!-- INITIALISATION -->
+    <target name="init" description="Creates the build directory">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <!-- CLEAN -->
+    <target name="clean" description="Removes all build files">
+        <delete dir="bin"/>
+        <delete dir="jar"/>
+    </target>
+    <!-- BUILD -->
+    <target depends="init" name="build" description="Builds the Java classes">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Prospector.classpath"/>
+        </javac>
+    </target>
+    <!-- JAR CREATION: also copies final documentation into build directory -->
+  	<target name="jar" depends="test" description="Creates the executable JAR file">
+        <mkdir dir="jar"/>
+        <copy includeemptydirs="false" todir="jar">
+            <fileset dir="..\..\docs\Final">
+                <include name="**/*.pdf"/>
+                <include name="**/ReleaseNotes.txt"/>
+            </fileset>
+        </copy>
+        <jar destfile="jar/Prospector.jar" basedir="bin">
+            <manifest>
+                <attribute name="Main-Class" value="prospector.ProspectorMain"/>
+            </manifest>
+            <zipgroupfileset dir="lib"/>
+        </jar>
+    </target>
+    <!-- RUN APP -->
+    <target name="run" depends="jar" description="Builds and runs the application">
+        <java jar="jar/Prospector.jar" fork="true"/>
+    </target>
+    <!-- RUN TESTS -->
+    <target name="test" depends="build" description="Runs all unit tests">
+      <mkdir dir="test_report"/>
+      <junit printsummary="yes" haltonfailure="yes">
+         <classpath>
+             <pathelement location="bin" />
+             <pathelement location="lib/junit4-4.8.2.jar"/>
+             <pathelement location="lib/dom4j-2.0.0-RC1.jar"/>
+         </classpath>
+         <formatter type="plain"/>
+          <batchtest fork="yes" todir="test_report">
+            <fileset dir="bin">
+              <include name="**/*Test.class"/>
+            </fileset>
+          </batchtest>
+     </junit>
+    </target>
+</project>

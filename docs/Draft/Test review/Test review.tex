@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{etoolbox}
+\usepackage{flafter}
+\usepackage{supertabular}
+\usepackage{longtable}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{hyperref}
+
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+\title{Prospector Sea Floor Mapping System (PG04)}					
+\author{Test Review}										
+
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.0 cm}
+    \textsc{\LARGE Test Review}\\[2.0 cm]
+	\textsc{\Large Software Engineering and Project}\\[0.5 cm]			
+	\textsc{\large University of Adelaide}\\[0.5 cm]
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \thetitle}\\
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{center} \large
+			Zeqi Fu (1680895)\linebreak			
+			\end{center}
+	\end{minipage}\\[2 cm]
+	
+	{\large Semester 2, 2016}\\[2 cm]
+ 
+	\vfill
+	
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+
+
+\section{Testing checklist}
+
+
+\subsection {Specifications}
+\begin{description}
+\item{1. Has the end user agreed that the defined requirement is correct?}
+\item{Yes, we follow the Software Requirements Specification (SDD) document which is  followed the user's requirement. we have meeting every week, and discussed with user and dynamic changing the requirement by user. Although we have changed some details, all the changes based on achieving an agreement with our clients.}
+
+\item{2. Did the end user participate in the development of the requirements?}
+\item{Sure, We need make sure all the requirements meet user's requirements.}
+
+\item{3.Is there a user sign-off at the end of the requirements phase?}
+\item{We got feedback Software Requirements Specification (SRS) report from our clients. So we believe this document is signed-off by clients}
+
+\item{4.Do the requirement define the limits of possible changes to the data volumes during the expected life of the application system?}
+\item{No limitation, we assume we can change as many time as possible, we using agile model as our developing process model. This model allows us to change at anytime.}
+
+\item{5.Is acceptance criteria defined? If yes has the system been verified against it?}
+\item{We didn't define a specific criteria but we make sure our documentation and coding meet IEEE criteria which is the standard criteria in this field.}
+
+
+\end {description}
+
+\subsection {Test Management}
+
+\begin{description}
+\item{1.Has the test plan been created with risk assessment and reviewed?}
+\item{There is no risk assessment in test plan, but we include risk assessment in our Software Project Management Plan (SPMP) documentation.}
+
+\item{2.Has the test approach been defined and agreement obtained from user?}
+\item{No yet, we haven't defined and agreement obtained from user, and we will submit it before presentation.}
+
+\item{3.Are test case traced to the specifications?}
+\item{Yes, because all the test cases were defined according to the function parts in Software Requirements Specification (SRS) documentation.}
+
+\item{4.Do test cases cover all the specifications? Are all specifications thoroughly covered by the test case?}
+\item{Yes, because all the test cases were designed based on related part from Software Requirements Specification (SRS), and all specifications thoroughly covered by test cases.}
+
+
+\item{5.Have expected results for each test case been defined?}
+\item{Yes, we defined expected results, and actual results to compare with. Thus we can find which function of our program has to be modified. }
+
+
+\item{6.Has the test bed been prepared?}
+\item{Yes, we are using the windows and eclipse and java 1.7 to prepare for testing. }
+
+
+\item{7.Is testing environment similar to the user environment?}
+\item{Yes, most of us are using Java 1.7 and Eclipse IDE, and as we discussed with our clients, it is the same as the one they use. }
+
+
+\item{8.Has the test execution criteria been defined?}
+\item{Not really, we didn't define the test execution criteria by ourselves, but we designed our test cases based on the standard of software developing criteria. }
+
+
+\item{9.Have test cases been executed and pass/fail status been assigned?}
+\item{We've just finished designing test cases based on Software Requirements Specification (SRS), and just started to do the execution. }
+
+\end{description}
+
+
+\subsection{Bug tracking}
+
+\begin{description}
+\item{1.Has the bug tracking criteria been defined?}
+\item{We will assign the bugs back to our developing team and retest them afterwards. And then we will test the related functions which may be changed or affected by the modification of coding as well, to make sure that there is no extra bugs created by the fixing.}
+
+\item{2.Have the bugs been posted against each failed test case?}
+\item{Definitely, we execute the test cases strictly based on the steps of test cases. So each failed test case will be posted against it.}
+
+\item{3.Are all posted bugs traced to the test cases? }
+\item{Yes, all the bugs are created by the test cases, so they can be traced to the test cases.}
+
+\item{4.Have test cases been created for the bugs that did not have any corresponding test cases previously?}
+\item{Yes, when we designed test cases, we clarified the different specifications based on different functions. So we separated different related functions into different test cases, thus there are no collisions between each pair of test cases.}
+
+\item{5.Before releasing final product to the user, have all the bugs been resolved? And all test cases have been passed?}
+\item{We will make sure that all the bugs tested fixed before releasing our product, that is the essential quality of our product. We will make sure all the test cases pass.}
+\end{description}
+
+
+
+
+
+\section{Self Evaluation}
+\begin {description}
+\item1.Describe one thing that you did well in this presentation.
+\item I can expression of my views fluently, have eye contact and body language.
+
+\item2.Describe one thing that you would change about your preparation of this presentation. 
+
+\item I may spend more time prepare the question more deeply, and familiar with computer jargon.
+
+\item3.Comment on the content of your presentation: do you feel that you provided your audience with information that they did not know prior to your presentation? Explain. 
+\item Yes, I show the information easily and it is all about our project's test review, so it can be useful for audience.
+
+\item4.Comment on your eye contact: was it sufficient? Why or why not? If not, how do you plan to improve your eye contact for your next presentation? 
+\item I think it is good, and I assume someone can communicate with me by eye contact.
+
+\item5.Comment on your gestures and movement: were they effective? Why or why not? If not, how do you plan to improve your gestures and movement for your next presentation? 
+\item It can be useful with I really want to show something to audience, I will use some body language to show my positive attitude.
+
+\item6.Comment on your practice for this presentation: did you practice thoroughly? If you feel that you did not practice thoroughly, how will you modify your practice for your next presentation? Be specific 
+\item I can be good practice for me. But I need improve my pronunciation and fluency.
+
+\item7.Please provide an overall assessment of your presentation. Were you satisfied with your presentation? Why or why not?
+\item It's satisfied for me, but I will practice more to improve my presentation.
+
+\item8.For your next presentation, comment on upto three things that you would like to improve and how you would improve.
+\item  More confidence, speak fluent and correct pronunciation
+
+
+
+\end{description}
+
+
+
+\section{Glossary}
+
+\begin{description}
+\item [{GUI}] Graphical User Interface 
+\item [{LeJOS}] The Lego Java Operating System 
+\item [{RMI}] Remote Method Invocation 
+\item [{SFM}] Sea Floor Mapping 
+\item [{SRS}] Software Requirements Specification 
+\item[{MVC}] Model View Controller
+
+\end{description}
+
+
+\section{Youtube Link}
+
+\begin{description}
+
+\item \url {https: //youtu.be/0Z2C9s-M_Ro} 
+
+\end{description}
+
+
+\begin{thebibliography}{1}
+
+\bibitem{} Software Project Management Plan
+
+\bibitem {}Software Requirements Specification
+
+\bibitem {}Software Design Document
+      
+  \end{thebibliography}
+
+
+
+\end{document}

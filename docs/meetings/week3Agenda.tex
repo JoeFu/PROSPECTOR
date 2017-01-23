@@ -1,0 +1,115 @@
+%%%%%%weekly meeting template, prepared by Michael Sheng.  09/03/2007
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 22 cm
+
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+
+\begin{document}
+
+%%%mention the no, time, and venue of the meeting
+\noindent The {\em first} Software Engineering Group (PG4) Project weekly meeting will be held in {\bf Room 462 (Ingkarni Wardli)} at {\bf 10am on Tuesday 9 August 2016}.
+
+
+\vspace*{15pt}
+
+\begin{center}
+\huge \bf Agenda
+\end{center}
+
+
+
+%%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+\section*{Chair: Tao Zhang}
+
+\vspace*{10pt}
+
+%%%if some students cannot make the meeting due to some reasons, their names should appear here.
+\section{Apologies}
+\begin{itemize}
+\item Yann Frizenschaf
+\end{itemize}
+
+
+%%%short presentation about the work of previous week or any milestone specified in the course.
+\section{Presentation}
+\begin{itemize}
+\item Tao Zhang
+\item Yi Lin
+\item Yuan Liang
+\item Lili Wu
+\item Zeqi Fu
+\item Navdeep Singh
+\end{itemize}
+
+%%%any schedules for this meeting should go next, each with a separate section.
+%%%for example, the first meeting is about requirement elicitation, like the following.
+\section{Client}
+The group shall present the items below with the client:
+
+%%%if there are more subissues, make them as subsections.
+\subsection{Requirements Summarise }
+Yi Lin shall give a shortly summarise of the client's basic requirements of the SeaFaults Mapping Robot. 
+
+\begin{enumerate}
+\item Feature: durable
+\item Working Environment: seafloor
+\item Function: generated data
+\end{enumerate}
+
+\subsection{Requirements collection}
+According to the basic requirements team members ask some detailed questions to customers.
+\begin{enumerate}
+\item Working environment
+\begin{itemize}
+\item How hazards or debris look like? In which situation the robot should know it is a dangerous site so that it should stop surveying?
+
+\end{itemize}
+\item Mapping
+\begin{itemize}
+\item Do colours map directly to depth?
+\item Does the map need to be saved in an image format as well? What format? XML? PDF?
+\item How do we deliver the map? As a file?
+\item Zoom functionality -- what format? XML? PDF? What is the required resolution/granularity?
+\item Is there a maximum size for boundary discontinuities?
+\item What is the metric for accuracy of the map?
+\item Can the survey function can be turned on and off?
+\end{itemize}
+\item Movement
+\begin{itemize}
+\item Is the "robot" autonomous or tethered/controlled?
+\item Do we provide the "container"? What is an "appropriate size"?
+\item What constitutes "significant force"?
+\item If the robot meet any hazard while surveying, what should it do? Stay at that point or moving to the nearest safe place?
+\item how long is the robot required to move without pause?
+\item how fast should the robot response of our control?
+\end{itemize}
+\item Operations
+\begin{itemize}
+\item Are we required to design a UI for the operator? What are the required controls?
+\end{itemize}
+\end{enumerate}
+
+%%%more issues should make it like the above one.
+\section{Other Issues}
+Tao Zhang will confirm the next meeting
+
+%%%finally, specifies time of next meeting
+\vspace*{10pt}
+\noindent Note: Next meeting to be held on 11 August 2016.
+
+
+\end{document}

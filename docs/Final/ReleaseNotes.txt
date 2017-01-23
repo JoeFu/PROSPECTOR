@@ -1,0 +1,19 @@
+Release notes:
+	Software Version:
+		Prospector (PG04) SFM Version 1.0
+		https://github.cs.adelaide.edu.au/a1210255/2016-S2-PG04/
+		tag: final
+		
+	Re-used code statement:
+		Unit testing: JUnit 4.8.2 
+		License: Eclipse Public License 1.0
+			http://junit.org/junit4/license.html
+
+		XML document parsing: DOM4J 2.0.0
+		License: BSD License
+			http://dom4j.sourceforge.net/dom4j-1.6.1/license.html
+			
+		EV3 Control: EV3 API
+		License: GPL v3
+			http://www.lejos.org/
+

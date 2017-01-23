@@ -1,0 +1,661 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+\title{Prospector Sea Floor Mapping System}					
+\author{SRS}										
+
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.0 cm}
+    \textsc{\LARGE Software Requirements Specification}\\[2.0 cm]
+	\textsc{\Large Software Engineering and Project}\\[0.5 cm]			
+	\textsc{\large University of Adelaide}\\[0.5 cm]
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \thetitle}\\
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{center} \large
+			Navdeep Singh (a1660360)\linebreak
+			Liang Yuan (a1679380)\linebreak
+			Zeqi Fu (a1680895)\linebreak
+			Tao Zhang (a1680974)\linebreak
+			Lili Wu (a1683229)\linebreak
+			Yi Lin (a1682781)\linebreak
+            Yann Frizenschaf (a1162562)\linebreak
+			\end{center}
+	\end{minipage}\\[2 cm]
+	
+	{\large Semester 2, 2016}\\[2 cm]
+ 
+	\vfill
+	
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\begin{table}
+\begin{tabular}{ | p{0.12\textwidth}| p{0.24\textwidth}| p{0.15\textwidth}| p{0.25\textwidth}|p{0.10\textwidth}|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Revision History}}\\
+\hline
+\textbf \textbf{Date} &  \textbf\textbf{Name} &  \textbf\textbf{Student ID} & \textbf\textbf {Updates} & \textbf\textbf{Version} \\
+\hline
+21st Aug & Yann Frizenschaf & 1162562 & Added 3 operate models for the movement system in Description Section & 0.1\\
+\hline
+21st Aug & Yi Lin & 1682781 & Added GUI statement in Description Section & 0.2\\
+\hline
+21st Aug & Yann Frizenschaf & 1162562 & Added 2.1 Features Part and 2.1.1 Primary Systems Part in Description Section; Added FRC 015, FRC 016, FRE 004, FRE 005 in 4.3 Vision Section & 0.3\\
+\hline
+ 25th Aug & Yann Frizenschaf & 1162562 & Draft Release &1.0\\
+\hline
+ 20th Oct & Liang Yuan & 1679380 & update 3.2.1,4.2.2,5.1.1 combined FRC0015,FRC0016 &1.1\\
+\hline
+24th Oct &Yi Lin&1682781  &added content about safety requirements  & 1.2\\
+\hline
+25th Oct &Yi Lin&1682781  &update 1.2, 1.4 and section 2  & 1.3\\
+\hline
+ 26th Oct&Yi Lin  &1682781  &update section 3 and 5 & 1.4\\
+\hline
+ 27th Oct& Yi Lin &1682781  &update section 4 & 1.5\\
+\hline
+27th Oct& Tao Zhang &1680974  &Separate section of Assumption and Constraint & 1.6\\
+\hline
+27th Oct& Yi Lin &1682781  &Final Release & 2.0\\
+\hline
+\end{tabular}
+
+\end{table} 
+
+\clearpage 
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+The sea floor is considered a significant frontier for development
+of many industries including, but not limited to, scientific research,
+mining, transport, and maintenance of communications infrastructure. A key consideration
+for any activity taking place on or near the sea floor is a sound
+understanding of the geology and topography of the area under consideration. 
+
+This documented comprises the Software Requirements Specification
+for the software component of the Sea Floor Mapping System(SFM) to be developed by the Prospector
+team for SeaFaults. The requirements for the software system are described
+in detail in the following sections.
+
+\subsection{Conventions}
+
+Requirements of the system are organised into three categories: 
+\begin{description}
+\item [{User requirements (UR):}] define the operation of software
+components which are user-facing, and require some interaction by the user.
+\item [{Functional requirements (FR):}] define the externally quantifiable
+functions the system must include, measured as a set of inputs, observable behavior, and outputs of the software.
+\item [{Non-functional requirements (NR):}] define all internal requirements
+placed upon the system, which may not have an observable functional
+effect, but are important for reasons of maintainability, extensibility,
+and/or resource and environment constraints. Generally, the functional requirements are related to system design, and the non-functional requirements are related to system architecture and operating environment. 
+\end{description}
+Each of the above requirement types are further sorted into two classes: core requirements, which must be met in order for the system to meet its contractually
+obligated purpose, and extension requirements, which are not strictly
+required but are desirable to have in order to improve the system's
+efficiency, usability or accuracy above the strictly required
+level. 
+
+For each of the above requirement types, each individual requirement
+is designated by a prefix (UR, FR or NR) corresponding to its requirement
+type, a requirement class (C for core, E for extension), and a three
+digit number identifier. For example, the first core user requirement
+is designated URC001 and the second functional extension requirement
+is designated FRE002. Finally, each requirement is designated with a priority
+(High, Medium, or Low) indicating the requirement's relative importance to the
+system's core mission.
+
+A glossary of all important terms and abbreviations can be found in
+Section \ref{glossary}.
+
+\subsection{Intended Audience}
+
+This document is intended for consumption by all key stakeholders
+within the SeaFaults organisation and their clients, as well as the
+Prospector software development team as a high-level reference for
+the SFM system's required software functionality. 
+
+For SeaFaults stakeholders, this document provides an overview of
+the functionality which may reasonably be expected from the software
+system developed by Prospector, as well as defining the scope and
+range of functionality. Such stakeholders should read the entire document,
+with an emphasis on the scope, user requirements and functional requirements. 
+
+For Prospector software developers, this document describes a high-level
+overview of the requirements of the software to be developed in non-technical
+language. While this gives room for interpretation in terms of technical
+implementation of the requirements, developers should consistently
+refer to this document to ensure their work remains focussed on the
+core requirements and within the project's overall scope definition.
+
+\subsection{Scope}
+
+This document defines the requirements for the software component
+of the SFM system only. While hardware considerations are touched
+on in the form of non-functional requirements, the hardware to be
+used has been defined and consideration of this (beyond its effect
+on the requirements of the software system) are beyond the scope of
+both this document and the project as a whole. 
+
+The software for which the requirements are defined herein is intended
+to enable effective mapping of a defined area of sea floor in order
+to determine its suitability for use by a SeaFaults client. It will
+do this by mapping the sea floor as accurately and efficiently as
+possible, and providing outputs pertaining to the mapping operation
+once the operation is complete. The system itself makes no determination
+of the suitability of an area for a particular application, rather,
+it produces quantitative map data which can be utilised by SeaFaults
+and/or its clients to assess the mapped area for suitability. All
+known environmental and external constraints on the system and its
+operations are contained within this document, largely in the form
+of functional and non-functional requirements.
+
+\section{System Description}
+
+\subsection{Features}
+
+The basic operation of the Prospector SFM system is to be as follows\cite{spec}  (these requirements are formalised in Sections \ref{userrec}, \ref{funcrec} and \ref{nonrec}): the SeaFaults Mapping SeaFaults Mapping Robot will be placed at a predefined point in the survey area, and will subsequently traverse the entire survey area (where possible), synthesising sensor data with an estimate of its current location in order to build a map of the survey area in real-time. Features to be mapped include faultlines (two-dimensional, coloured), obstacles (three-dimensional) and survey area boundaries. 
+
+During the mapping operation, the SeaFaults Mapping SeaFaults Mapping Robot must move autonomously and avoid obstacles and No-Gone-Zones(NGZ) under the observation of an operator, who may intervene in an emergency. When the mapping operation is complete, the SeaFaults Mapping SeaFaults Mapping Robot must reach the predefined extraction point. 
+
+After extraction, the map data model must be extracted from the SeaTank's on-board data and saved to an XML file. A partially completed map in the form XML file can also be loaded and subsequently completed by the SeaTank.
+
+The main features of the software component of the Prospector
+SFM system are detailed below. Note that Section \ref{primarysystems} contains descriptive information only as a reference, which do not constitute part of the formal requirements.
+
+\subsubsection{Component Systems:}\label{primarysystems}
+\begin{description}
+\item [{Movement/Geolocation:}] The software must be capable of controlling
+the hardware in such a way that the SeaFaults Mapping SeaFaults Mapping Robot is able to move to a nominated
+location in a reasonable time, incorporating sensor feedback via the
+sensor system in order to make informed decisions about direction
+changes due to obstacles or site boundaries. It must also be capable
+of synthesising multiple inputs including motor readings and inputs
+from the sensor system in order to maintain an estimate of its current
+position for both navigation output to the mapping system. 
+The movement system must be able to operate in three distinct modes:
+\begin{itemize}{}
+\item Fully manual mode, in which the user explicitly controls the movement of the SeaFaults Mapping SeaFaults Mapping Robot (forward, reverse and rotation).
+\item Move-to-point mode, in which the user specifies a point in survey-area coordinates (see Section \ref{Assumptions}) and the SeaFaults Mapping SeaFaults Mapping Robot moves to the specified point, avoiding obstacles as required. 
+\item Fully autonomous mode, in which the user instructs the SeaFaults Mapping SeaFaults Mapping Robot to begin the mapping operation, after which the SeaFaults Mapping SeaFaults Mapping Robot will traverse and map the survey area as completely as possible in a systematic fashion.
+\end{itemize}
+The detailed requirements of each of these modes are listed in Section \ref{funcrec}.
+\item [{Sensors:}] The software must be capable interpreting inputs from
+hardware sensors in order to identify obstacles, site boundaries and
+fault lines, and feed this information to both the Movement System
+and the Mapping System.
+\item [{Mapping:}] The software must be capable of combining inputs from
+both the Movement System (current location and orientation) and Sensor
+System (currently visible topographical features) in order to build
+a map of the survey area in real time. It must also be capable
+of resuming operation appropriately when given a partial or incomplete
+map of the current survey area, and exporting map data in an appropriate format after the mapping operation is completed.
+\item [{GUI:}] A user-friendly GUI must be provided to enable control and oversight of mapping operations. The GUI must include controls and visual feedback for the operator as defined in Section \ref{userrec}.
+\item [{Communications:}] The software must allow for communication between
+the operations centre on the surface and the SeaFaults Mapping SeaFaults Mapping Robot on the sea floor,
+in order to issue commands and monitor the state of the system. The communication functionality is provided by the LeJOS platform. 
+\item [{Emergency:}] At any time, the operator must be able to bring the
+SeaFaults Mapping SeaFaults Mapping Robot to a complete and immediate stop if the current state of the
+system is deemed to be hazardous.
+\end{description}
+
+\subsection{Users}
+
+The intended users of this system fall into two categories: system
+operators and map consumers. The manner in which these two user groups
+interact with the software system and its interfaces differs in several
+key aspects. 
+
+System operators oversee the real-time operations of the SeaFaults Mapping SeaFaults Mapping Robot while
+the sea floor mapping is being conducted. These users interact with
+the Human-Machine Interface (HMI) during the operation in order to define the target location
+for the SeaTank, monitor the state of the system for features of interest
+or hazards, and determine when the mapping operation is complete and
+the SeaFaults Mapping SeaFaults Mapping Robot should be returned to the surface. The needs of these users
+should be considered when designing and implementing the system's
+primary HMI including real-time control and monitoring features. 
+
+Map consumers have no interaction with the system during operation,
+but rather are concerned with the quality, accuracy, completeness
+and file format of the system outputs in the form of sea floor maps.
+The needs of these users should be considered when designing and implementing
+the conversion and delivery of map data in the required XML format.
+
+\subsection{Environment}
+
+The Prospector SFM software must be implemented for the provided hardware
+and firmware platform, that is, the Lego Mindstorms EV3 and LeJOS.
+The user-interface application must be capable of running on Windows and Mac operating systems (see Section \ref{nonrec}).
+
+\subsection{Assumptions}\label{Assumptions}
+\begin{itemize}{}
+\item Operational area will not exceed A1 paper size. 
+\item Boundaries and faultlines will have well-defined colours, and
+these will not change across operations.
+\item The software is not expected to function correctly in the event
+of damaged hardware; protection of the system or recovery from external
+damage is a hardware responsibility an is therefore beyond the scope
+of this document and project.
+\item The operator can maintain remote visual contact with the SeaFaults Mapping SeaFaults Mapping Robot at all times.
+\item The SeaFaults Mapping SeaFaults Mapping Robot can enter the extraction zone from any direction.
+\end{itemize}
+
+\subsection{Constraints}\label{Constraints}
+\begin{itemize}{}
+\item The coordinates of the SeaFaults Mapping SeaFaults Mapping Robot at the start of every mapping operation will be known in order to provide a baseline for future position estimates.
+\item The coordinates of the SeaFaults Mapping SeaFaults Mapping Robot and all relevant mapped features will be specified in survey-area coordinates, measured from the South-West corner of the survey area and measured in centimetres. 
+\end{itemize}
+
+\section{User Requirements}\label{userrec}
+
+\subsection{Operations GUI}
+
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{URC001: GUI Mode Change}\label{URC001}] 
+\item [{Description: }\label{Description}] The software must include a GUI (hereafter referred to as the Operations GUI) which enables the user to change the SeaFaults Mapping SeaFaults Mapping Robot operation mode (see Section \ref{primarysystems}) and perform all actions required for each operation mode. 
+\item[{Rationale: }\label{Rationale}] Encapsulates control and monitoring interface for operations users.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC002: GUI Manual Mode}\label{URC002}] 
+\item [{Description: }\label{Description}] When in manual control mode, the Operations GUI must allow the user to take manual control of the SeaFaults Mapping SeaFaults Mapping Robot, including the ability to move forward and backward (in the SeaFaults Mapping SeaFaults Mapping Robot's frame of reference) and rotate in-place. 
+\item[{Rationale: }\label{Rationale}] Allows user-controlled navigation of the SeaFaults Mapping SeaFaults Mapping Robot in manual mode.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC003: GUI Move-to-Point Mode}\label{URC003}] 
+\item [{Description: }\label{Description}] When in move-to-point mode, the Operations GUI must allow the user to specify a target destination for the SeaFaults Mapping SeaFaults Mapping Robot in survey-area coordinates, and commence SeaFaults Mapping SeaFaults Mapping Robot movement. 
+\item[{Rationale: }\label{Rationale}] Allows the user to define the parameters for and commence semi-autonomous movement of the SeaFaults Mapping SeaFaults Mapping Robot.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC004: GUI Autonomous Mode}\label{URC004}] 
+\item [{Description: }\label{Description}] When in autonomous mode, the GUI must allow the user to initiate and halt the survey operation. 
+\item[{Rationale: }\label{Rationale}] Allows the user to commence and halt fully autonomous SeaFaults Mapping SeaFaults Mapping Robot movement.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC005: Mapping Toggle}\label{URC005}] 
+\item [{Description: }\label{Description}] The software must include as part of the Operations GUI the ability to start and stop recording map data in any of the above operational modes. 
+\item[{Rationale: }\label{Rationale}] Allows the operator to prevent gathering of erroneous map data if and when manual repositioning of the SeaFaults Mapping SeaFaults Mapping Robot is required.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC006: Position Indicator}\label{URC006}] 
+\item [{Description: }\label{Description}] The software should include in the GUI display an indication of the current position and orientation of the SeaFaults Mapping SeaFaults Mapping Robot relative to the survey area bounds. 
+\item[{Rationale: }\label{Rationale}] Allows the operator to track the SeaFaults Mapping SeaFaults Mapping Robot's position in the absence of line-of-site to the SeaFaults Mapping SeaFaults Mapping Robot's current position.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC007: Map View}\label{URC007}] 
+\item [{Description: }\label{Description}] The software must include as part of the Operations GUI a basic, top-down overview of the currently mapped area, including known and estimated survey area boundaries and previously mapped obstacles and faultlines, as well as any pre-defined NGZs and operator specified NGZs during exploration. 
+\item[{Rationale: }\label{Rationale}] Provides reference to the user regarding the remaining area to be mapped and also SeaFaults Mapping SeaFaults Mapping Robot position relative to significant features in the survey area.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{URC008: Emergency Stop}\label{URC008}] 
+\item [{Description: }\label{Description}] The software must include as part of the Operations GUI a emergency stop button, functional in all control modes. 
+\item[{Rationale: }\label{Rationale}] Allows the user to intervene and halt SeaFaults Mapping SeaFaults Mapping Robot movement in the event of an emergency.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{URC009: Load XML GUI}\label{URC009}] 
+\item [{Description: }\label{Description}] The software must include as part of the Operations GUI a pop-up dialog which allows loading of an XML file defining a full or partial map of the survey area.
+\item[{Rationale: }\label{Rationale}] Allows loading of map data for subsequent completion.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\end{description}
+
+\subsubsection{Extension Requirements}
+\begin{description}
+\item [{URE001: Stop Notification}\label{URE001}] 
+\item [{Description: }\label{Description}] The software should indicate to the user (via the Operations GUI) when an emergency stop has been triggered due to obstacle proximity.
+\item[{Rationale: }\label{Rationale}] Prevents user confusion in the event of an unexpected stop.
+\item[{Priority: }\label{Priority}] Low.
+\item[{Status: }\label{Status}] Unimplemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{URE002: Manual Correction}\label{URE002}] 
+\item [{Description: }\label{Description}]The Operations GUI should include the ability to manually specify the position and orientation of the SeaFaults Mapping SeaFaults Mapping Robot on the real-time display based on a visual estimate of the current position by the operator.
+\item[{Rationale: }\label{Rationale}] Allows manual correction of the SeaFaults Mapping SeaFaults Mapping Robot's position estimate by the user.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{URE003: Mapping Complete Notification}\label{URE003}] 
+\item [{Description: }\label{Description}] The Operations GUI should indicate to the user when (in fully autonomous mode) the mapping operation is complete. 
+\item[{Rationale: }\label{Rationale}] Eases the user's cognitive burden by providing a simple indication when the mapping operation is completed.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{URE004: Unreachable Area Notification}\label{URE004}] \item [{Description: }\label{Description}] The Operations GUI should indicate to the user which sections of the survey area have been determined to be unreachable due to obstacle placement, if any.
+\item[{Rationale: }\label{Rationale}] Provides visual feedback to the user with respect to unreachable areas.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Unimplemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\end{description}
+
+\subsection{Mapping Output}
+
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{URC010: Map Conversion}\label{URC010}] 
+\item [{Description: }\label{Description}] The software must include a function(a button show on GUI) to convert the real time data-model gathered during the operational phase and exported from the SeaFaults Mapping SeaFaults Mapping Robot to the required format(s).
+\item[{Rationale: }\label{Rationale}] Allows the conversion to be performed by a user rather than a software developer.
+\item[{Priority: }\label{Priority}] Higg.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\subsubsection{Extension Requirements}
+\begin{description}
+\item [{URE005: GUI Map Conversion}\label{URE004}] 
+\item [{Description: }\label{Description}] The software should include a GUI tool to convert and display the real time data-model gathered during the operational phase and exported from the SeaFaults Mapping SeaFaults Mapping Robot to the required format(s).
+\item[{Rationale: }\label{Rationale}]  Allows the conversion to be performed by a novice user rather than a software developer.
+\item[{Priority: }\label{Priority}] Low.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\end{description}
+
+\section{Functional Requirements}\label{funcrec}
+\subsection{Movement}
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{FRC001: Position Estimation}\label{FRC001}] 
+\item [{Description: }\label{Description}] The software must be able to maintain an estimate of the SeaTank's current position based on a known starting position and an estimate of its movement since the start of the survey. 
+\item[{Rationale: }\label{Rationale}] Enables geolocation of mapped features.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC002: Exiting Survey Area Avoidance}\label{FRC002}] 
+\item [{Description: }\label{Description}] When in move-to-point or fully autonomous mode, the software must prevent the Sea Faults Mapping SeaFaults Mapping Robot from exiting the survey area by a significant margin.  However, if the operator want to move the SeaFaults Mapping Robot out of the boundary, the mode must switch into the manual mode. 
+\item[{Rationale: }\label{Rationale}] Prevents inefficiency in mapping and damage to the Sea Tank.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC003: Collision Avoidance}\label{FRC003}] 
+\item [{Description: }\label{Description}] When in move-to-point or fully autonomous mode, the software must prevent the SeaFaults Mapping SeaFaults Mapping Robot from colliding with an obstacle with significant force by stopping the SeaFaults Mapping SeaFaults Mapping Robot at an appropriate distance. 
+\item[{Rationale: }\label{Rationale}] Prevents damage to the hardware.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC004: No-Go-Zone Avoidance}\label{FRC004}]  
+\item [{Description: }\label{Description}] When in move-to-point or fully autonomous mode, the software must prevent the SeaFaults Mapping SeaFaults Mapping Robot from entering any predefined NGZ.
+\item[{Rationale: }\label{Rationale}] Prevents damage to the hardware.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC005: Manual Operation}\label{FRC005}] 
+\item [{Description: }\label{Description}] The software must allow the SeaFaults Mapping SeaFaults Mapping Robot to operate in manual mode, in which movement only occurs due to explicit user input from the Operations GUI.
+\item[{Rationale: }\label{Rationale}] Allows fully manual operation of the SeaTank.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC006: Semi-Autonomous Operation}\label{FRC006}] 
+\item [{Description: }\label{Description}] The software must allow the SeaFaults Mapping SeaFaults Mapping Robot to operate in move-to-point mode, in which the SeaFaults Mapping SeaFaults Mapping Robot travels to a point specified by the user, avoiding any intervening obstacles.
+\item[{Rationale: }\label{Rationale}] Allows semi-autonomous operation of the SeaTank.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC007: Autonomous Operation}\label{FRC007}] 
+\item [{Description: }\label{Description}] The software must allow the SeaFaults Mapping SeaFaults Mapping Robot to operate in fully autonomous mode, in which the SeaFaults Mapping SeaFaults Mapping Robot traverses the survey area without user intervention. 
+\item[{Rationale: }\label{Rationale}] Allows fully autonomous operation of the SeaTank.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\subsubsection{Extension Requirements}
+\begin{description}
+\item [{FRE001: Autonomous Correction}\label{FRE001}] 
+\item [{Description: }\label{Description}] The software should allow for correction of the SeaTank's estimated position based on sensor inputs (for example, detection of the survey area boundary). 
+\item[{Rationale: }\label{Rationale}] Enables automatic correction of any accumulated error in the position estimate.
+\item[{Priority: }\label{Priority}] Low.
+\item[{Status: }\label{Status}] Unimplemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{FRE002: Manual Correction}\label{FRE002}]
+\item [{Description: }\label{Description}] The software should allow for correction of the SeaTank's estimated position based on user input. \\
+\item[{Rationale: }\label{Rationale}] Enables manual correction of any accumulated error in the position estimate.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\subsection{Mapping}
+
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{FRC008: Map Model}\label{FRC008}] 
+\item [{Description: }\label{Description}] The software must synthesise sensor input with the current position and orientation estimate of the SeaFaults Mapping SeaFaults Mapping Robot in order to build a data model representing the mapped area in real time.
+\item[{Rationale: }\label{Rationale}] Enables the output of map data and informs the navigation of the SeaTank.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC009: Real-time Data Publishing}\label{FRC009}] 
+\item [{Description: }\label{Description}] The software must provide the current map data model to the Operations GUI for real time display such that the display can be updated at a rate no slower than once per second.
+\item[{Rationale: }\label{Rationale}] Enables near real-time display of current map data.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC010: Time Limit}\label{FRC010}] 
+\item [{Description: }\label{Description}] The mapping operation must take no more than 20 minutes from commencement (user-specified start time) to completion (SeaFaults Mapping SeaFaults Mapping Robot reaches extraction area). This does not include exporting map data to file. 
+\item[{Rationale: }\label{Rationale}] Defines completion of mapping operation within a reasonable time frame.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC011: Map Conversion}\label{FRC011}] 
+\item [{Description: }\label{Description}] The software must provide a means to export the real-time data model from the SeaFaults Mapping SeaFaults Mapping Robot to a workstation once the mapping operation has completed.
+\item[{Rationale: }\label{Rationale}] Enables the conversion of the data model to the appropriate mapping user format(s).
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC012: Map Export}\label{FRC012}]
+\item [{Description: }\label{Description}] The software must be able to convert the real-time data model created during the operational phase to a suitable output format within a reasonable amount of time (< 1 minute) after the mapping operation has completed. This phase of the operation can take place off-board. The output format (XML as defined by a DTD document) is to be provided by a third party. 
+\item[{Rationale: }\label{Rationale}] Enables generation of the required map data for mapping users.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{FRC013: Load XML File}\label{FRC013}] 
+\item [{Description: }\label{Description}] The software must be able load map data in the form of an XML file in order to update the onboard map data model. Loaded data must take precedence over any map data generated by the SeaTank. 
+\item[{Rationale: }\label{Rationale}] Enables loading and subsequent completion of existing map data.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{FRC014: Data Precision}\label{FRC014}] 
+\item [{Description: }\label{Description}] The error in mapped location of obstacle edges, faultlines and boundaries must not exceed 7 cm. This degree of error is expected due to accumulated error in location estimate and sensor precision. 
+\item[{Rationale: }\label{Rationale}] Defines required precision of mapped data.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\subsubsection{Extension Requirements}
+Nil.
+
+\subsection{Sensors}
+
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{FRC0015: Faultline Detection}\label{FRC015}] 
+\item [{Description: }\label{Description}] The SeaFaults Mapping SeaFaults Mapping Robot must be able to detect faultlines and distinguish these from survey area boundaries or three-dimensional obstacles.  In addition, The software must be able to assign a depth value to faultines based on a provided colour range mapping and the colour value input read from the appropriate sensor.
+\item[{Rationale: }\label{Rationale}] Enables both the mapping functionality and obstacle avoidance.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+\end{description}
+
+\subsubsection{Extension Requirements}
+\begin{description}
+\item [{FRE003: Flexible Configuration}\label{FRE003}] 
+\item [{Description: }\label{Description}] The mapping of faultines to colour value ranges should be configurable prior to software compile time. 
+\item[{Rationale: }\label{Rationale}] Improves maintainability and flexibility of the sensor system.
+\item[{Priority: }\label{Priority}] Low.
+\item[{Status: }\label{Status}] Unimplemented.
+\item[{Source: }\label{Source}] Requirements elicitation meeting.
+
+\item [{FRE004: Discontinuity Detection}\label{FRE004}] 
+\item [{Description: }\label{Description}] The software should be able to detect and interpret discontinuities in the survey area boundary based on the relevant sensor input.
+\item[{Rationale: }\label{Rationale}] Enhances the system's mapping ability and avoids damage to the hardware and/or operator intervention.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Unimplemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\section{Non-functional Requirements}\label{nonrec}
+\subsection{Environment}
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{NRC001: Operation Environment Support}] 
+\item [{Description: }\label{Description}] The GUI and off-board conversion tools should support 64-bit Windows (7/8/10) and Mac (OSX10) operating systems, with the Java 8 Runtime installed.
+\item[{Rationale: }\label{Rationale}] Allows for operation in the most common end-user environments.
+\item[{Priority: }\label{Priority}] Medium.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\end{description}
+
+\subsubsection{Extension Requirements}
+Nil.
+
+\subsection{Safety}
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{NRC002: Human Safety}] 
+\item [{Description: }\label{Description}] Operator workflows should ensure user safety.
+\item[{Rationale: }\label{Rationale}] Compliance with relevant workplace health and safety guidelines \cite{whs}.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+
+\item [{NRC003: Materials Safety}] 
+\item [{Description: }\label{Description}] The operator workflows and hardware handling should prevent damage to the hardware.
+\item[{Rationale: }\label{Rationale}] Hardware is not the property of the development team, and should be protected accordingly.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+\end{description}
+\subsubsection{Extension Requirements}
+Nil.
+
+\subsection{Quality assurance}
+\subsubsection{Core Requirements}
+\begin{description}
+\item [{NRC004: Testing}] 
+\item [{Description: }\label{Description}] Automated (unit) testing should be implemented where appropriate, and configured to run when the code is built.
+\item[{Rationale: }\label{Rationale}] Automated testing assists in the detection of bugs introduced with code changes or misconfiguration.
+\item[{Priority: }\label{Priority}] High.
+\item[{Status: }\label{Status}] Implemented.
+\item[{Source: }\label{Source}] Project specification \cite{spec}
+\end{description}
+\subsubsection{Extension Requirements}
+Nil.
+
+\section{Glossary}\label{glossary}
+
+\begin{description}
+\item [{FRC}] Core functional requirement prefix
+\item [{FRE}] Extension functional requirement prefix
+\item [{GUI}] Graphical User Interface
+\item [{HMI}] Human-machine interface 
+\item [{LeJOS}] The Lego Java Operating System 
+\item [{NGZ}] No-go-zone, forbidden to enter
+\item [{NRC}] Core non-functional requirement prefix
+\item [{NRE}] Extension non-functional requirement prefix
+\item [{SFM}] Sea Floor Mapping 
+\item [{SRS}] Software Requirements Specification 
+\item [{XML}] eXtensible Markup Language
+\item [{URC}] Core user requirement prefix
+\item [{URE}] Extension user requirement prefix
+\item[{WHS}] Workplace Health and Safety
+\end{description}
+
+\begin{thebibliography}{1}
+
+  \bibitem{spec} Milanese, D and Weerasinghe, A 2016. {\em Software Engineering and Project - SeaFaults Mapping SeaFaults Mapping Robot}. Project specification version 1.0
+  \bibitem{whs}Safe Work Australia 2016. {\em Guide to the model Work Health and Safety Act}. Accessed online 25/10/16 <http://www.safeworkaustralia.gov.au/sites/SWA/about/Publications/Documents/717/Guide-to-the-WHS-Act-at-21-March-2016.pdf>
+
+  \end{thebibliography}
+
+\end{document}

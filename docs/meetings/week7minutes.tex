@@ -1,0 +1,121 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+%%% page parameters
+\oddsidemargin -0.5 cm
+\evensidemargin -0.5 cm
+\textwidth 15 cm
+\topmargin -1.2 cm
+\textheight 22 cm
+\renewcommand{\baselinestretch}{1.4}\normalsize
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+
+\vspace*{15pt}
+\begin{center}
+\huge \bf Meeting Minutes - PG 04
+\end{center}
+
+\section*{Chair: Lily Wu}
+\vspace*{10pt}
+
+\section{Date and Time}
+\begin{itemize}
+\item Date: 06/09/2016
+\item Time: 10:40am - 11:00am
+\end{itemize}
+
+\section{Apologies}
+\begin{itemize}
+\item none
+\end{itemize}
+
+\section{Present}
+\begin{itemize}
+\item Tao Zhang
+\item Yi Lin
+\item Yuan Liang
+\item Lili Wu
+\item Zeqi Fu
+\item Navdeep Singh
+\item Yann Frizenschaf
+\end{itemize}
+
+\section{Secretary}
+\begin{itemize}
+\item Tao Zhang
+\end{itemize}
+
+\section{Summary }
+Liang Yuan summarized the progress of the Draft SPMP:
+
+\begin{itemize}
+\item SPMP draft had been completed. 
+\item Configuration management has been completed.
+\item Double check Figure number has been added and linked to descriptions or not.
+\end{itemize}
+
+\section{Some roles are changed}
+
+\begin{itemize}
+\item Lili will be QA manager, be responsible for quality assurance including function testing and integrate testing.
+\item Navdeep will be documentation manager, be responsible for keeping track of all the document is updated on time or not.
+\item Tao will be assistant project manager, be responsible for keeping track the code part and help Yann to do some project management job.
+\end{itemize}
+
+\section{Gui presentation by Yann}
+
+\begin{itemize}
+\item Redesigned GUI is shown and updated buttons are operated by keyboard.
+\item Better code encapsulation.
+\item Merged prototype demo code into main project structure.
+\end{itemize}
+
+\section{Milestone freeze}
+\begin{itemize}
+\item Agreed with to show full manual control of robot (forward, reverse, 90 degree turns).
+\item Agreed with to show Gui indication of position and orientation (map and numerical output).
+\item Agreed with to show displaying current sensor (ultrasonic, color sensor, gyro) readings on Gui.
+\end{itemize}
+
+\section{SRS review}
+\begin{itemize}
+\item Put a before student id on cover.
+\item Keep the revision history up to date and release version of draft should be 1.0. Put in the table who does what.
+\item Reorder the wording may give a better explanation. For example, User Requirements (UR), Functional Requirements (FR) when first time introducing it. All prefixes should be checked.
+\item Make the meaning of "While hardware considerations are touched on in the form of nonfunctional requirements" more clear.
+\item Change "Description" to "Overall Description" on title of section2
+\item Check the meaning of ‘Vision’. The ultrasonic sensor gives you distance data, but nothing like images.
+\item Communications and Emergency operations are very important. Consider change the title ‘Auxiliary Systems’.
+\item Seperate a subsection "constraints" from assumptions part.
+\item Add ‘Status (implemented/unimplemented)’ and ‘Source’ for how we know th e requirements. If the requirement is no longer needed, make a note as well.
+\item Define what automatic does in URC004.
+\item Link requirements together if needed.
+\item FRC002-004: What happens if the operator wants to move the robot outside the boundary manually?
+\item FRC006: Looks like High priority.
+\item FRC010: Everything should be finished within 20 mins, including demo.
+\item FRC011: Decrease the error from 10cm to 7cm. Can also work out a more reasonable number after test.
+\item FRE03: Where is FRE01 and 02? Why do we need Expedited Finish? What’s the source? From client meeting or project spec doc?
+\item FRC0015-16: Maybe reorder the sentencing to make it clear. The work of Faultline Detection actually includes Depth Detection.
+\item NRC001: work out a list of java version(java 1.8).
+\item Add chapter for safety, quality assurance and user case.
+\end{itemize}
+
+\section{Wifi dongle}
+\begin{itemize}
+\item got a new Wifi dongle
+\end{itemize}
+
+
+\vspace*{10pt}
+\noindent Note: Next client meeting to be held on 13 September 2016.
+
+
+\end{document}
